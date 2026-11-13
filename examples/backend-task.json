@@ -1,0 +1,110 @@
+{
+  "description": "Synthetic backend task for testing installed-first, requirement-complete skill selection and authorization gates.",
+  "task": {
+    "prompt": "Build and optimize a Spring Boot REST API with PostgreSQL performance improvements, JWT authentication, automated unit and integration tests, a security review, and CI/CD.",
+    "stack": ["Java", "Spring Boot", "PostgreSQL"],
+    "note": "All skills and installation states in this fixture are hypothetical; this file does not assert that any skill is installed for the user."
+  },
+  "requirements": [
+    "api-contracts",
+    "postgres-optimization",
+    "jwt-auth",
+    "unit-tests",
+    "integration-tests",
+    "security-review",
+    "ci-cd"
+  ],
+  "candidates": [
+    {
+      "name": "spring-boot-backend",
+      "focus": 94,
+      "prompt_alignment": 93,
+      "covers": ["api-contracts", "jwt-auth"],
+      "status": "installed"
+    },
+    {
+      "name": "database-optimization",
+      "focus": 96,
+      "prompt_alignment": 95,
+      "covers": ["postgres-optimization"],
+      "status": "installed"
+    },
+    {
+      "name": "unit-testing",
+      "focus": 89,
+      "prompt_alignment": 92,
+      "covers": ["unit-tests"],
+      "status": "installed"
+    },
+    {
+      "name": "integration-testing",
+      "focus": 90,
+      "prompt_alignment": 91,
+      "covers": ["integration-tests"],
+      "status": "installed"
+    },
+    {
+      "name": "authentication-security",
+      "focus": 97,
+      "prompt_alignment": 97,
+      "covers": ["jwt-auth"],
+      "status": "installed"
+    },
+    {
+      "name": "code-review-security",
+      "focus": 88,
+      "prompt_alignment": 90,
+      "covers": ["security-review"],
+      "status": "available",
+      "authorized": true
+    },
+    {
+      "name": "devops-pipeline",
+      "focus": 92,
+      "prompt_alignment": 95,
+      "covers": ["ci-cd"],
+      "status": "available",
+      "authorized": false
+    },
+    {
+      "name": "unverified-backend-suite",
+      "focus": 100,
+      "prompt_alignment": 100,
+      "covers": [
+        "api-contracts",
+        "postgres-optimization",
+        "jwt-auth",
+        "unit-tests",
+        "integration-tests",
+        "security-review",
+        "ci-cd"
+      ],
+      "status": "unverified"
+    },
+    {
+      "name": "responsive-ui",
+      "focus": 10,
+      "prompt_alignment": 10,
+      "covers": [],
+      "status": "installed"
+    }
+  ],
+  "expected": {
+    "metric_x_formula": "0.45 * focus + 0.55 * prompt_alignment",
+    "highest_ranked": "unverified-backend-suite",
+    "selected": [
+      "spring-boot-backend",
+      "database-optimization",
+      "unit-testing",
+      "integration-testing",
+      "code-review-security"
+    ],
+    "uncovered_requirements": ["ci-cd"],
+    "excluded_from_selection": [
+      "unverified-backend-suite",
+      "devops-pipeline",
+      "authentication-security",
+      "responsive-ui"
+    ]
+  }
+}
