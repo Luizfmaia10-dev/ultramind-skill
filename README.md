@@ -1,461 +1,265 @@
-# Skill ultramind
+# ultramind-skill
 
-**Orquestração inteligente, descoberta e recomendação de skills para agentes de IA.**
+**Intelligent Skill Discovery, Context Preservation, Collaborative Decision-Making, and Multi-Skill Orchestration for AI Agents.**
 
-## Visão geral
+## Overview
 
-O **Skill ultramind** é uma Meta-Skill desenvolvida para analisar solicitações, compreender o contexto de um projeto e selecionar as skills mais adequadas para realizar uma tarefa.
+**ultramind-skill** is an intelligent Meta-Skill designed to analyze user requests, understand project context, discover available skills, and recommend the most appropriate combination of capabilities to complete a task.
 
-Seu principal objetivo é aproveitar ao máximo as skills já disponíveis no ambiente, evitando recomendações desnecessárias e identificando possíveis lacunas de capacidade.
+Its primary purpose is to maximize the use of existing skills while identifying capability gaps and recommending specialized backup skills when necessary.
 
-Quando uma tarefa exige uma competência que não está coberta pelas skills instaladas, o Skill ultramind consulta um catálogo de **17 skills de reserva**, organizadas por especialidade.
+Unlike traditional skill recommendation systems, ultramind-skill follows a strict **Context Preservation and User-Controlled Decision-Making Policy**.
 
-A Meta-Skill não substitui as demais skills. Sua função é atuar como uma camada de inteligência responsável pela descoberta, seleção, recomendação e organização das skills utilizadas durante a execução.
+The Meta-Skill must never independently remove, omit, discard, or alter user-provided information, requirements, constraints, or project context.
 
-## Objetivos
+Whenever a decision involves excluding information, changing requirements, resolving ambiguous instructions, or modifying the intended scope, ultramind-skill must consult the user before proceeding.
 
-- Identificar automaticamente as skills disponíveis no ambiente.
-- Interpretar a solicitação e o contexto fornecido pelo usuário.
-- Selecionar as skills mais adequadas para cada tarefa.
-- Priorizar skills já instaladas.
-- Evitar skills redundantes ou incompatíveis.
-- Identificar competências ausentes.
-- Recomendar skills de reserva quando necessário.
-- Definir a ordem lógica de utilização das skills.
-- Considerar tecnologias, arquitetura, dependências e restrições do projeto.
-- Explicar por que cada skill foi selecionada.
-- Evitar recomendar skills sem relação direta com a tarefa.
+Other available skills should be actively used as supporting resources to analyze requirements, validate technical decisions, identify dependencies, and improve the orchestration process.
 
-## Arquitetura de funcionamento
+The goal is not merely to select skills, but to create a reliable, transparent, collaborative, and context-aware orchestration system.
 
-O Skill ultramind utiliza uma arquitetura baseada em cinco componentes principais.
+---
 
-### 1. Skill Discovery Engine
+## Fundamental Principle: Never Remove Information Without User Authorization
 
-Responsável pela descoberta das skills disponíveis.
+**THIS IS A MANDATORY, NON-NEGOTIABLE RULE.**
 
-Deve identificar:
+ultramind-skill must NEVER independently:
 
-- Nome e descrição da skill.
-- Capacidades e responsabilidades.
-- Instruções de utilização.
-- Requisitos e dependências.
-- Ferramentas necessárias.
-- Limitações conhecidas.
+- Remove information provided by the user.
+- Discard project requirements.
+- Omit relevant contextual details.
+- Simplify requirements in ways that change their meaning.
+- Remove features from the requested scope.
+- Ignore technical constraints.
+- Delete or modify project files without authorization.
+- Exclude relevant skills or capabilities from consideration without a justified evaluation.
+- Change previously established decisions without informing the user.
+- Assume that information is unnecessary simply because it appears redundant.
+- Silently resolve conflicting requirements.
+- Replace user instructions with its own preferences.
 
-A descoberta deve utilizar os mecanismos disponibilizados pelo ambiente, sem presumir que uma skill está instalada apenas porque seu nome aparece no catálogo de reserva.
+**Information preservation takes priority over optimization, convenience, brevity, or autonomous decision-making.**
 
-### 2. Context Analysis Engine
+The Meta-Skill may organize, classify, summarize, and prioritize information for analysis, provided that the original meaning, requirements, and constraints remain preserved and accessible.
 
-Responsável por compreender a solicitação do usuário.
+Summaries must never be treated as permission to discard original information.
 
-Analisa:
+If information appears irrelevant, duplicated, contradictory, outdated, or unnecessary, ultramind-skill must explain the situation and request clarification before permanently excluding or modifying it.
 
-- Objetivo principal.
-- Requisitos funcionais e não funcionais.
-- Tecnologias utilizadas.
-- Estrutura e arquitetura do projeto.
-- Restrições técnicas.
-- Critérios de qualidade.
-- Resultados esperados.
+### Required Behavior
 
-O sistema deve utilizar o contexto disponível e solicitar esclarecimentos somente quando informações essenciais estiverem ausentes.
+When uncertain about whether information should be retained, ultramind-skill must:
 
-### 3. Skill Matching Engine
+1. Preserve the original information.
+2. Identify the uncertainty.
+3. Consult relevant supporting skills when available.
+4. Explain the possible implications.
+5. Ask the user for clarification when the decision affects requirements, scope, or retained information.
+6. Continue only with decisions that are supported by the available context or explicitly authorized by the user.
 
-Responsável por comparar os requisitos da tarefa com as capacidades das skills descobertas.
+**Default behavior: preserve information, never silently discard it.**
 
-Os principais critérios de seleção são:
+---
 
-| Critério | Peso sugerido |
+## Collaborative Intelligence Policy
+
+ultramind-skill must not operate as an isolated decision-making system.
+
+It should collaborate with the user and leverage other available skills throughout its analysis and orchestration process.
+
+### User Collaboration
+
+The user remains the final authority over:
+
+- Project requirements.
+- Functional scope.
+- Technical constraints.
+- Removal or modification of information.
+- Major architectural changes.
+- Installation of additional skills.
+- Destructive or irreversible actions.
+- Changes that materially affect the expected result.
+
+ultramind-skill may propose improvements, alternatives, or optimizations, but it must never silently apply changes that contradict established user requirements.
+
+### Skill-Assisted Reasoning
+
+Other skills are not merely execution tools.
+
+They should also be considered supporting resources during:
+
+- Requirement analysis.
+- Technical investigation.
+- Architecture evaluation.
+- Skill compatibility assessment.
+- Dependency identification.
+- Risk analysis.
+- Testing strategy.
+- Security assessment.
+- Code review.
+- Execution planning.
+
+For example, if ultramind-skill encounters a complex back-end architecture decision, it should consult an appropriate installed architecture skill when available instead of relying exclusively on its own analysis.
+
+If a request involves user interface design, it may use front-end and design guideline skills to evaluate the most appropriate approach.
+
+However, supporting skills must not override user instructions or independently authorize the removal of information.
+
+---
+
+## Skill Selection Hierarchy
+
+ultramind-skill must follow this hierarchy:
+
+1. Discover all relevant installed skills.
+2. Analyze the complete user request and project context.
+3. Consult relevant skills to support requirement interpretation.
+4. Identify the smallest sufficient combination of installed skills.
+5. Detect capabilities not covered by installed skills.
+6. Consult the backup skill catalog for missing capabilities.
+7. Evaluate compatibility, dependencies, and technical constraints.
+8. Recommend the most appropriate combination.
+9. Present important trade-offs and unresolved questions to the user.
+10. Coordinate execution only when the required capabilities and permissions are available.
+
+The system must prioritize installed skills over backup alternatives whenever existing skills adequately satisfy the requirements.
+
+**Selecting fewer skills does not authorize removing requirements or information.**
+
+Skills may be excluded from the execution plan when they are demonstrably unnecessary, but the underlying user requirements must remain intact.
+
+---
+
+## Backup Skill Catalog
+
+The system includes 17 planned backup skills organized into eight categories.
+
+| Category | Skill |
 |---|---|
-| Compatibilidade com a tarefa | 35% |
-| Compatibilidade com o contexto técnico | 25% |
-| Cobertura dos requisitos | 20% |
-| Compatibilidade com dependências | 10% |
-| Especialização e adequação | 10% |
+| Reverse Engineering | `reverse-engineering` |
+| Reverse Engineering | `saas-reverse-engineering` |
+| Front-End | `frontend-development` |
+| Front-End | `web-design-guidelines` |
+| Front-End | `responsive-ui` |
+| Front-End | `mobile-ui` |
+| Back-End | `api-design` |
+| Back-End | `backend-architecture` |
+| Back-End | `database-optimization` |
+| Back-End | `authentication-security` |
+| Testing | `unit-testing` |
+| Testing | `integration-testing` |
+| Pull Requests | `pr-management` |
+| DevOps | `devops-pipeline` |
+| Code Review | `code-review-quality` |
+| Code Review | `code-review-security` |
+| Code Review | `code-review-performance` |
 
-Os pesos são parâmetros iniciais e podem ser ajustados.
+These identifiers describe planned skill capabilities. Their presence in the catalog does not guarantee that they are installed or executable.
 
-A pontuação serve para comparar candidatas, mas não substitui a verificação de requisitos obrigatórios, permissões e disponibilidade real.
-
-### 4. Skill Fallback Engine
-
-Responsável por identificar lacunas e consultar o catálogo de skills de reserva.
-
-Seu funcionamento segue três princípios:
-
-**Prioridade:** uma skill instalada e adequada deve ser escolhida antes de uma alternativa de reserva.
-
-**Complementaridade:** uma skill de reserva pode ser recomendada quando acrescentar uma competência necessária que não está coberta.
-
-**Disponibilidade:** uma skill de reserva não pode ser considerada executável até que sua implementação e suas dependências estejam acessíveis.
-
-O sistema deve distinguir claramente:
-
-- Skill instalada e disponível.
-- Skill de reserva disponível.
-- Skill de reserva recomendada, mas não instalada.
-- Competência não atendida pelo catálogo.
-
-### 5. Skill Orchestration Engine
-
-Responsável por organizar a utilização das skills selecionadas.
-
-Define:
-
-- Ordem de execução.
-- Dependências entre etapas.
-- Entradas necessárias.
-- Saídas esperadas.
-- Critérios de conclusão.
-- Pontos de validação.
-
-Quando houver suporte no ambiente, a Meta-Skill poderá orientar a execução sequencial ou paralela de skills independentes.
-
-Caso contrário, deverá apresentar um plano de execução, sem afirmar que executou ações que não foram realizadas.
+Backup skills must only be recommended when an actual capability gap has been identified.
 
 ---
 
-## Catálogo de skills de reserva
+## Context Preservation Protocol
 
-O catálogo inicial contém **17 skills**, distribuídas em oito categorias.
+Every task processed by ultramind-skill must maintain a complete representation of the relevant user context.
 
-Os identificadores abaixo representam capacidades planejadas. Cada skill deverá ter uma implementação própria ou uma referência verificável antes de ser utilizada.
+### Original Requirements
 
-### 1. Engenharia reversa
+All user-provided requirements must be preserved.
 
-**`reverse-engineering`**
+### Technical Constraints
 
-Responsável pela análise e compreensão de sistemas existentes.
+Technology choices, architecture restrictions, compatibility requirements, and implementation limitations must remain intact.
 
-Capacidades:
+### User Decisions
 
-- Analisar código-fonte e dependências.
-- Identificar arquitetura e padrões de projeto.
-- Reconstruir fluxos e regras de negócio.
-- Mapear componentes e integrações.
-- Documentar comportamentos existentes.
-- Identificar oportunidades de refatoração.
+Previously confirmed decisions must be respected unless the user explicitly changes them.
 
-**`saas-reverse-engineering`**
+### Unresolved Questions
 
-Especializada na análise estrutural e funcional de aplicações SaaS.
+Ambiguous or conflicting requirements must be tracked rather than silently resolved.
 
-Capacidades:
+### Proposed Changes
 
-- Analisar funcionalidades e módulos de produtos SaaS.
-- Identificar jornadas de usuário.
-- Mapear fluxos de autenticação e permissões.
-- Analisar modelos de assinatura e cobrança.
-- Reconstruir requisitos e arquitetura conceitual.
-- Identificar funcionalidades necessárias para desenvolver soluções semelhantes.
+Any proposed removal, replacement, or significant modification must be clearly distinguished from approved requirements.
 
-A análise deve respeitar autorizações, licenças, privacidade e limites de acesso.
+### Supporting Skill Findings
 
-### 2. Front-end e experiência do usuário
+Information produced by supporting skills should enrich the analysis without overwriting or discarding the original context.
 
-**`frontend-development`**
-
-- Desenvolvimento de componentes e interfaces.
-- Integração com APIs.
-- Gerenciamento de estados.
-- Organização de projetos front-end.
-- Reutilização e manutenção de componentes.
-
-**`web-design-guidelines`**
-
-- Avaliação de usabilidade.
-- Acessibilidade.
-- Hierarquia visual.
-- Consistência de componentes.
-- Padrões de navegação e formulários.
-
-**`responsive-ui`**
-
-- Layouts responsivos.
-- Breakpoints.
-- Flexbox e CSS Grid.
-- Adaptação de componentes.
-- Compatibilidade entre tamanhos de tela.
-
-**`mobile-ui`**
-
-- Interfaces mobile-first.
-- Navegação mobile.
-- Componentes adequados para toque.
-- Ergonomia e legibilidade.
-- Adaptação para diferentes dispositivos móveis.
-
-### 3. Back-end
-
-**`api-design`**
-
-- Arquitetura de APIs REST.
-- Contratos de entrada e saída.
-- Validação de requisições.
-- Tratamento de erros.
-- Versionamento.
-- Documentação OpenAPI.
-
-**`backend-architecture`**
-
-- Organização de camadas.
-- Separação de responsabilidades.
-- Arquitetura modular.
-- Padrões de projeto.
-- Serviços e regras de negócio.
-- Escalabilidade e manutenção.
-
-**`database-optimization`**
-
-- Otimização de consultas SQL.
-- Análise de índices.
-- Identificação de gargalos.
-- Estratégias de paginação.
-- Problemas de consultas N+1.
-- Transações e desempenho de persistência.
-
-**`authentication-security`**
-
-- Autenticação e autorização.
-- JWT, sessões e OAuth 2.0.
-- Controle de acesso baseado em papéis.
-- Proteção de endpoints.
-- Gerenciamento seguro de credenciais.
-- Práticas de segurança para APIs.
-
-### 4. Testes
-
-**`unit-testing`**
-
-- Criação de testes unitários.
-- Testes de regras de negócio.
-- Uso de mocks e stubs.
-- Validação de cenários de erro.
-- Testes de regressão.
-- Análise de cobertura.
-
-**`integration-testing`**
-
-- Testes de integração entre componentes.
-- Validação de endpoints.
-- Testes com banco de dados.
-- Integração com serviços externos.
-- Verificação de contratos.
-- Testes de fluxos completos entre camadas.
-
-### 5. Pull Requests
-
-**`pr-management`**
-
-- Preparação e organização de Pull Requests.
-- Análise das alterações propostas.
-- Elaboração de descrições.
-- Verificação de critérios de aceite.
-- Checklists de revisão.
-- Identificação de riscos e impactos.
-- Orientação para resolução de conflitos.
-
-### 6. DevOps
-
-**`devops-pipeline`**
-
-- Configuração de pipelines CI/CD.
-- Automação de builds.
-- Execução automatizada de testes.
-- Docker e conteinerização.
-- Configuração de ambientes.
-- Deploy e rollback.
-- Gerenciamento de variáveis e segredos.
-- Monitoramento básico de aplicações.
-
-### 7. Code Review
-
-**`code-review-quality`**
-
-Focada na qualidade e manutenção do código.
-
-- Legibilidade.
-- Complexidade.
-- Duplicação.
-- Organização e modularidade.
-- Princípios SOLID.
-- Code smells.
-- Possíveis refatorações.
-
-**`code-review-security`**
-
-Focada em vulnerabilidades e riscos.
-
-- Falhas de autenticação e autorização.
-- Injeção SQL.
-- XSS e CSRF.
-- Exposição de informações sensíveis.
-- Dependências vulneráveis.
-- Configurações inseguras.
-- Validação de entradas.
-
-**`code-review-performance`**
-
-Focada em eficiência e escalabilidade.
-
-- Gargalos de processamento.
-- Consultas ineficientes.
-- Consumo excessivo de memória.
-- Operações bloqueantes.
-- Concorrência.
-- Estratégias de cache.
-- Escalabilidade e uso de recursos.
+When multiple skills provide conflicting recommendations, ultramind-skill must identify the disagreement, evaluate the available evidence, and consult the user when the conflict affects the requested outcome.
 
 ---
 
-## Estratégia de seleção
+## Operational Workflow
 
-O Skill ultramind deve seguir a seguinte hierarquia:
+### Phase 1 — Request Understanding
 
-1. Skills instaladas que atendam integralmente à tarefa.
-2. Combinações de skills instaladas que atendam aos requisitos.
-3. Skills instaladas complementadas por skills de reserva disponíveis.
-4. Recomendações de skills de reserva ainda não instaladas.
-5. Identificação explícita de lacunas não atendidas.
+Analyze the complete request and identify all explicit and implicit requirements supported by the available context.
 
-A Meta-Skill deve selecionar o menor conjunto suficiente de skills, sem sacrificar requisitos importantes.
+### Phase 2 — Context Preservation
 
-Uma skill altamente especializada deve ser priorizada quando sua especialização for relevante. Entretanto, uma skill mais abrangente poderá ser escolhida quando cobrir adequadamente todos os requisitos com menos dependências.
+Record and retain relevant requirements, constraints, decisions, dependencies, and unresolved questions.
 
-## Fluxo operacional
+### Phase 3 — Skill Discovery
 
-**Etapa 1 — Receber a solicitação**
+Discover skills actually available in the environment and inspect their documented capabilities.
 
-Interpretar a tarefa e identificar o resultado esperado.
+### Phase 4 — Collaborative Analysis
 
-**Etapa 2 — Analisar o contexto**
+Use relevant installed skills as supporting resources when additional technical analysis is beneficial.
 
-Identificar tecnologias, restrições, requisitos e informações do projeto.
+### Phase 5 — Skill Matching
 
-**Etapa 3 — Descobrir skills**
+Compare task requirements with installed skill capabilities.
 
-Consultar as skills realmente disponíveis no ambiente.
+### Phase 6 — Gap Detection
 
-**Etapa 4 — Avaliar compatibilidade**
+Identify requirements that cannot be fully addressed by available skills.
 
-Comparar as capacidades encontradas com os requisitos da tarefa.
+### Phase 7 — Backup Skill Evaluation
 
-**Etapa 5 — Identificar lacunas**
+Consult the backup catalog and recommend additional skills only where necessary.
 
-Determinar quais requisitos não são atendidos pelas skills instaladas.
+### Phase 8 — User Consultation
 
-**Etapa 6 — Consultar reservas**
+Request clarification or authorization for decisions that would change established requirements, discard information, or introduce significant scope changes.
 
-Buscar alternativas no catálogo de reserva apenas para as lacunas identificadas.
+### Phase 9 — Orchestration Planning
 
-**Etapa 7 — Construir o plano**
+Define selected skills, responsibilities, dependencies, execution order, and validation criteria.
 
-Definir skills selecionadas, justificativas, dependências e ordem de utilização.
+### Phase 10 — Execution and Validation
 
-**Etapa 8 — Validar a recomendação**
-
-Verificar cobertura, compatibilidade, disponibilidade e possíveis redundâncias.
-
-**Etapa 9 — Apresentar ou executar**
-
-Entregar o plano de utilização ou encaminhar a execução quando o ambiente permitir.
+Coordinate execution when supported, validate the results, and ensure that no original requirement has been silently omitted.
 
 ---
 
-## Exemplo de utilização
+## Core Rules
 
-### Solicitação
-
-> Desenvolva um sistema SaaS de gerenciamento financeiro utilizando React, Spring Boot e PostgreSQL. A aplicação precisa ser responsiva, possuir autenticação e ter testes automatizados.
-
-### Análise do ultramind-skill
-
-**Contexto identificado:**
-
-- Aplicação SaaS.
-- Front-end em React.
-- Back-end em Spring Boot.
-- Banco de dados PostgreSQL.
-- Autenticação.
-- Responsividade.
-- Testes automatizados.
-
-### Resultado esperado
-
-| Skill | Responsabilidade | Prioridade |
-|---|---|---|
-| `frontend-development` | Desenvolver interface React | Alta |
-| `responsive-ui` | Garantir responsividade | Alta |
-| `backend-architecture` | Estruturar o back-end | Alta |
-| `api-design` | Definir contratos REST | Alta |
-| `authentication-security` | Implementar autenticação | Alta |
-| `unit-testing` | Validar regras de negócio | Alta |
-| `integration-testing` | Validar integrações | Alta |
-| `code-review-security` | Revisar segurança | Complementar |
-
-As skills serão classificadas como instaladas ou de reserva conforme a descoberta realizada no ambiente.
-
-### Ordem recomendada
-
-1. Análise dos requisitos e arquitetura.
-2. Definição dos contratos da API.
-3. Implementação de autenticação e back-end.
-4. Desenvolvimento da interface.
-5. Adaptação responsiva.
-6. Testes unitários e de integração.
-7. Revisão de segurança.
-
-A ordem poderá ser modificada quando houver dependências ou atividades que possam ocorrer em paralelo.
+1. **NEVER remove user-provided information without authorization.**
+2. **NEVER silently discard project requirements or context.**
+3. **NEVER change the intended scope independently.**
+4. **ALWAYS preserve the original meaning of user instructions.**
+5. **ALWAYS consult the user when a decision requires removing or materially changing information.**
+6. **USE other relevant skills as supporting resources whenever they can improve the analysis or execution.**
+7. **NEVER allow supporting skills to override user requirements.**
+8. **ALWAYS prioritize appropriate installed skills.**
+9. **ONLY recommend backup skills when an actual capability gap exists.**
+10. **NEVER assume that a skill is installed or available.**
+11. **NEVER invent skill capabilities, tool results, or execution outcomes.**
+12. **ALWAYS respect technical constraints and previously confirmed decisions.**
+13. **ALWAYS identify unresolved conflicts instead of silently choosing an interpretation.**
+14. **NEVER perform destructive or irreversible actions without the required authorization.**
+15. **ALWAYS explain meaningful recommendations and trade-offs.**
+16. **NEVER confuse skill recommendation with successful skill execution.**
+17. **ALWAYS validate that the final plan covers the original requirements.**
 
 ---
 
-## Formato de resposta da Meta-Skill
-
-Sempre que uma seleção de skills for solicitada, o ultramind skill deverá apresentar:
-
-**Resumo da tarefa:** interpretação objetiva do pedido.
-
-**Contexto identificado:** stack, arquitetura, restrições e requisitos relevantes.
-
-**Skills selecionadas:** nome, responsabilidade e justificativa.
-
-**Origem:** instalada, reserva disponível ou reserva não instalada.
-
-**Skills complementares:** somente quando agregarem valor real.
-
-**Ordem de execução:** sequência recomendada e dependências.
-
-**Lacunas:** requisitos que ainda não podem ser atendidos.
-
-**Observações:** riscos, limitações ou informações pendentes.
-
-O formato deve ser proporcional à complexidade da solicitação. Tarefas simples não devem produzir relatórios excessivamente longos.
-
----
-
-## Regras fundamentais
-
-1. Nunca presumir que uma skill está instalada.
-2. Nunca inventar capacidades ou ferramentas.
-3. Priorizar skills existentes e adequadas.
-4. Utilizar reservas somente quando houver necessidade.
-5. Não recomendar todas as skills de uma categoria automaticamente.
-6. Evitar sobreposição desnecessária de responsabilidades.
-7. Respeitar as restrições técnicas do projeto.
-8. Considerar dependências e compatibilidade.
-9. Explicar a seleção de maneira objetiva.
-10. Não afirmar que uma skill foi executada quando apenas foi recomendada.
-11. Não instalar, modificar ou remover skills sem autorização.
-12. Não executar ações destrutivas sem as confirmações necessárias.
-13. Reavaliar a seleção quando o contexto ou os requisitos mudarem.
-14. Não tratar a pontuação de compatibilidade como garantia de qualidade.
-15. Preservar as instruções e limites de segurança do ambiente.
-
----
-
-## Estrutura planejada do projeto
+## Planned Project Structure
 
 ```text
 ultramind-skill/
@@ -463,48 +267,48 @@ ultramind-skill/
 ├── SKILL.md
 ├── config/
 │   ├── matching-rules.yaml
-│   └── orchestration-rules.yaml
+│   ├── orchestration-rules.yaml
+│   └── context-preservation.yaml
 ├── references/
 │   ├── reserve-skills.md
 │   ├── selection-strategy.md
-│   └── execution-workflow.md
+│   ├── execution-workflow.md
+│   └── collaboration-policy.md
 └── examples/
     ├── frontend-example.md
     ├── backend-example.md
-    └── fullstack-example.md
+    ├── fullstack-example.md
+    └── multi-skill-example.md
 ```
 
-**README.md:** documentação geral do projeto.
-
-**SKILL.md:** instruções operacionais da Meta-Skill.
-
-**config/:** parâmetros de seleção, compatibilidade e orquestração.
-
-**references/:** catálogo de reserva e regras detalhadas.
-
-**examples/:** demonstrações práticas de utilização.
-
-Essa estrutura é uma proposta inicial e poderá ser adaptada ao formato de skills suportado pelo ambiente de instalação.
+The project structure separates operational instructions, skill selection rules, context preservation policies, and practical examples.
 
 ---
 
-## Evolução futura
+## Future Improvements
 
-O Skill ultramind foi pensado para permitir a expansão gradual do catálogo e dos mecanismos de recomendação.
+Potential enhancements include:
 
-Possíveis melhorias incluem:
+- Dynamic skill discovery.
+- Configurable backup skill catalogs.
+- Multi-agent orchestration.
+- Skill compatibility scoring.
+- Context integrity validation.
+- Requirement traceability.
+- User approval checkpoints.
+- Conflict detection between supporting skills.
+- Recommendation history.
+- Skill execution feedback.
+- Automated validation of requirement coverage.
 
-- Catálogo configurável de skills.
-- Descoberta de novas skills em fontes autorizadas.
-- Detecção de conflitos entre skills.
-- Histórico de recomendações e resultados.
-- Avaliação da eficácia das seleções.
-- Perfis de seleção por tipo de projeto.
-- Suporte a fluxos com múltiplos agentes.
-- Reavaliação automática após mudanças no contexto.
+All future enhancements must preserve the fundamental principles of user control, information integrity, and collaborative decision-making.
 
-## Princípio central
+---
 
-> **Use o que já existe. Identifique o que falta. Recomende apenas o necessário. Organize a execução com base no contexto.**
+## Core Philosophy
 
-O Skill ultramind deve funcionar como uma camada de decisão inteligente, garantindo que cada tarefa utilize as competências mais adequadas disponíveis no ambiente, com o mínimo de redundância e o máximo de coerência técnica.
+> **Preserve everything that matters. Never discard information independently. Consult the user when decisions affect requirements. Use existing skills as collaborators. Recommend only what is necessary.**
+
+**ultramind-skill exists to enhance the user's capabilities, not to replace the user's decisions.**
+
+Its intelligence should be demonstrated through accurate analysis, careful orchestration, transparent recommendations, and strict respect for the information and instructions provided by the user.
