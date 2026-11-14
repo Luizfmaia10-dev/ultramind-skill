@@ -71,3 +71,17 @@ ultramind-skill/
 The implementation is informed by public Agent Skills practices and several prominent GitHub projects, summarized with links in [research](references/research.md). It does not claim to have analyzed every GitHub skill or to have tested actual agents in every runtime. The scripts and static package structure can be locally unit-tested; effectiveness in a specific agent must be verified in that agent.
 
 **Principle:** Read once. Understand deeply. Rank intelligently. Select precisely. Execute efficiently. Preserve every requirement.
+
+## Running Tests
+
+The project uses Python's built-in `unittest` framework, so no additional dependencies are required.
+
+To run all tests, open a terminal in the `ultramind-skill` root directory and execute:
+
+```bash
+python -m unittest discover -s tests -v
+```
+
+This command automatically discovers and runs the tests, validating skill indexing, Metric X calculations, skill ranking, requirement coverage, and selection logic.
+
+If all tests pass, the terminal will display `OK`.
